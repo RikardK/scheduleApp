@@ -10,6 +10,7 @@
 		8F09F55C1712C0B300903557 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F09F55B1712C0B300903557 /* Foundation.framework */; };
 		8F09F55F1712C0B300903557 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F55E1712C0B300903557 /* main.m */; };
 		8F09F5631712C0B300903557 /* scheduleApp.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F09F5621712C0B300903557 /* scheduleApp.1 */; };
+		8F09F56B1712C0DC00903557 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F56A1712C0DC00903557 /* Student.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		8F09F55E1712C0B300903557 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8F09F5611712C0B300903557 /* scheduleApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "scheduleApp-Prefix.pch"; sourceTree = "<group>"; };
 		8F09F5621712C0B300903557 /* scheduleApp.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = scheduleApp.1; sourceTree = "<group>"; };
+		8F09F5691712C0DC00903557 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		8F09F56A1712C0DC00903557 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				8F09F55E1712C0B300903557 /* main.m */,
-				8F09F5621712C0B300903557 /* scheduleApp.1 */,
+				8F09F5691712C0DC00903557 /* Student.h */,
+				8F09F56A1712C0DC00903557 /* Student.m */,
 				8F09F5601712C0B300903557 /* Supporting Files */,
 			);
 			path = scheduleApp;
@@ -83,6 +87,7 @@
 		8F09F5601712C0B300903557 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8F09F5621712C0B300903557 /* scheduleApp.1 */,
 				8F09F5611712C0B300903557 /* scheduleApp-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -140,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F09F55F1712C0B300903557 /* main.m in Sources */,
+				8F09F56B1712C0DC00903557 /* Student.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

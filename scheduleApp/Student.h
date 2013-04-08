@@ -1,5 +1,5 @@
 //
-//  main.m
+//  Student.h
 //  scheduleApp
 //
 //  Created by Rikard Karlsson on 4/8/13.
@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-int main(int argc, const char * argv[])
-{
+@interface Student : NSObject
 
-    @autoreleasepool {
-    }
-    return 0;
-}
-
+@end
