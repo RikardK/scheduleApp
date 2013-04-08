@@ -17,7 +17,6 @@ int main(int argc, const char * argv[])
         NSLog(@"Student: %@", student1);
         Student *student2 = [[Student alloc] initWithFirstName:@"Rikard" lastName:@"Karlsson" age:24 email:@"rikard88karlsson@gmail.com" address:@"Tackjärnsvägen 13, 168 68 Bromma"];
         NSLog(@"%@", student2);
-        
     }
     return 0;
 }
