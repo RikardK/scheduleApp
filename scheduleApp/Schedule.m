@@ -1,0 +1,39 @@
+//
+//  Schedule.m
+//  scheduleApp
+//
+//  Created by Rikard Karlsson on 4/8/13.
+//  Copyright (c) 2013 Rikard. All rights reserved.
+//
+
+#import "Schedule.h"
+
+@implementation Schedule
+
+-(id)init
+{
+    return [self initWithRoom:0 teacher:@"" course:@"" durationInMin:0 whatToRead:@"" message:@""];
+}
+
+-(id)initWithRoom:(NSUInteger)room teacher:(NSString *)teacher course:(NSString *)course durationInMin:(NSUInteger)durationInMin whatToRead:(NSString *)whatToRead message:(NSString *)message
+{
+    self = [super init];
+    
+    if (self) {
+        self.room = room;
+        self.teacher = teacher;
+        self.course = course;
+        self.durationInMin = durationInMin;
+        self.whatToRead = whatToRead;
+        self.message = message;
+    }
+    
+    return self;
+}
+
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"\n\nRoom: %lu\nTeacher: %@\nCourse: %@\nDuration(min): %lu\nWhat to read: %@\nMessage: %@", self.room, self.teacher, self.course, self.durationInMin, self.whatToRead, self.message];
+}
+
+@end
