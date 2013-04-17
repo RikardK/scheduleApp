@@ -7,7 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Student.h"
+@class Schedule;
 
 @interface StudentService : NSObject
+
+-(NSDictionary *)addStudent:(Student *)student;
+-(void)getStudentWithId:(NSString *)studentId;
+
+
+-(void)addNewScheduleForCourse:(Schedule *)schedule;
+-(void)updateSchedule:(Schedule *)schedule;
+-(void)sendMessageToAllStudents;
+-(void)sendMessageToStudentWithId:(NSString *)student;
 
 @end

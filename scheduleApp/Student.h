@@ -15,6 +15,7 @@
 @property (nonatomic) NSUInteger age;
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *address;
+@property (nonatomic, copy) NSString *type;
 
 
 -(id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName age:(NSUInteger)age email:(NSString *)email address:(NSString *)address;

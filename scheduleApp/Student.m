@@ -25,13 +25,14 @@
         self.age = age;
         self.email = email;
         self.address = address;
+        self.type = @"Student";
     }
     return self;
 }
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"\n\nFirst name: %@\nLast name: %@\nAge: %lu\nE-mail: %@\nAddress: %@\n", self.firstName, self.lastName, self.age, self.email, self.address];
+    return [NSString stringWithFormat:@"\n\nFirst name: %@\nLast name: %@\nAge: %lu\nE-mail: %@\nAddress: %@\nType: %@", self.firstName, self.lastName, self.age, self.email, self.address, self.type];
 }
 
 @end
