@@ -8,17 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "Student.h"
+
 @class Schedule;
 
 @interface StudentService : NSObject
 
 -(NSDictionary *)addStudent:(Student *)student;
--(void)getStudentWithId:(NSString *)studentId;
+-(NSDictionary *)getStudentWithId:(NSString *)studentId;
+-(Schedule *)dailyScheduleFor:(Student *)studentId;
+-(Schedule *)weeklyScheduleFor:(Student *)studentId;
+-(NSString *)whatToReadTodayFor:(Student *)studentId;
+-(NSString *)whatToReadThisWeekFor:(Student *)studentId;
 
 
--(void)addNewScheduleForCourse:(Schedule *)schedule;
--(void)updateSchedule:(Schedule *)schedule;
--(void)sendMessageToAllStudents;
--(void)sendMessageToStudentWithId:(NSString *)student;
+// Services only and admin can use.
+
+-(BOOL)sendMessageToAllStudents:(NSString *)message;
+-(BOOL)sendMessageToStudentWithId:(NSString *)student;
 
 @end

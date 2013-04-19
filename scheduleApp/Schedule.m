@@ -12,10 +12,10 @@
 
 -(id)init
 {
-    return [self initWithRoom:0 teacher:@"" course:@"" durationInMin:0 whatToRead:@"" message:@""];
+    return [self initWithRoom:0 teacher:@"" course:@"" whatToRead:@"" message:@""];
 }
 
--(id)initWithRoom:(NSUInteger)room teacher:(NSString *)teacher course:(NSString *)course durationInMin:(NSUInteger)durationInMin whatToRead:(NSString *)whatToRead message:(NSString *)message
+-(id)initWithRoom:(NSUInteger)room teacher:(NSString *)teacher course:(NSString *)course whatToRead:(NSString *)whatToRead message:(NSString *)message
 {
     self = [super init];
     
@@ -23,9 +23,9 @@
         self.room = room;
         self.teacher = teacher;
         self.course = course;
-        self.durationInMin = durationInMin;
         self.whatToRead = whatToRead;
         self.message = message;
+        self.type = @"Schedule";
     }
     
     return self;
@@ -33,7 +33,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"\n\nRoom: %lu\nTeacher: %@\nCourse: %@\nDuration(min): %lu\nWhat to read: %@\nMessage: %@", self.room, self.teacher, self.course, self.durationInMin, self.whatToRead, self.message];
+    return [NSString stringWithFormat:@"\n\nRoom: %lu\nTeacher: %@\nCourse: %@\nWhat to read: %@\nMessage: %@", self.room, self.teacher, self.course, self.whatToRead, self.message];
 }
 
 @end

@@ -11,6 +11,22 @@
 		8F09F55F1712C0B300903557 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F55E1712C0B300903557 /* main.m */; };
 		8F09F5631712C0B300903557 /* scheduleApp.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8F09F5621712C0B300903557 /* scheduleApp.1 */; };
 		8F09F56B1712C0DC00903557 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F56A1712C0DC00903557 /* Student.m */; };
+		8F09F56E1712CA8600903557 /* StudentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F56D1712CA8600903557 /* StudentService.m */; };
+		8F09F5711712CAA600903557 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F5701712CAA600903557 /* Schedule.m */; };
+		8F09F5741712CB0F00903557 /* Admin.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F5731712CB0F00903557 /* Admin.m */; };
+		8F8EA722171EF301007826AB /* ScheduleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8EA721171EF301007826AB /* ScheduleService.m */; };
+		8FCD90C817210DD2002A550A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCD90C717210DD2002A550A /* SenTestingKit.framework */; };
+		8FCD90CA17210DD2002A550A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCD90C917210DD2002A550A /* Cocoa.framework */; };
+		8FCD90D417210DD2002A550A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8FCD90D217210DD2002A550A /* InfoPlist.strings */; };
+		8FCD90D717210DD2002A550A /* StudentServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FCD90D617210DD2002A550A /* StudentServiceTests.m */; };
+		8FCD90E217210DF0002A550A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCD90C717210DD2002A550A /* SenTestingKit.framework */; };
+		8FCD90E317210DF0002A550A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCD90C917210DD2002A550A /* Cocoa.framework */; };
+		8FCD90E917210DF0002A550A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8FCD90E717210DF0002A550A /* InfoPlist.strings */; };
+		8FCD90EC17210DF0002A550A /* ScheduleServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FCD90EB17210DF0002A550A /* ScheduleServiceTests.m */; };
+		8FCD90F117210F1B002A550A /* StudentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F56D1712CA8600903557 /* StudentService.m */; };
+		8FCD90F217210F1C002A550A /* StudentService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F09F56D1712CA8600903557 /* StudentService.m */; };
+		8FCD90F317210F1E002A550A /* ScheduleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8EA721171EF301007826AB /* ScheduleService.m */; };
+		8FCD90F417210F1F002A550A /* ScheduleService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8EA721171EF301007826AB /* ScheduleService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +50,31 @@
 		8F09F5621712C0B300903557 /* scheduleApp.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = scheduleApp.1; sourceTree = "<group>"; };
 		8F09F5691712C0DC00903557 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		8F09F56A1712C0DC00903557 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		8F09F56C1712CA8600903557 /* StudentService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentService.h; sourceTree = "<group>"; };
+		8F09F56D1712CA8600903557 /* StudentService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentService.m; sourceTree = "<group>"; };
+		8F09F56F1712CAA600903557 /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
+		8F09F5701712CAA600903557 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
+		8F09F5721712CB0F00903557 /* Admin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Admin.h; sourceTree = "<group>"; };
+		8F09F5731712CB0F00903557 /* Admin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Admin.m; sourceTree = "<group>"; };
+		8F8EA720171EF301007826AB /* ScheduleService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleService.h; sourceTree = "<group>"; };
+		8F8EA721171EF301007826AB /* ScheduleService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleService.m; sourceTree = "<group>"; };
+		8FCD90C617210DD2002A550A /* StudentServiceTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentServiceTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FCD90C717210DD2002A550A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		8FCD90C917210DD2002A550A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		8FCD90CC17210DD2002A550A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		8FCD90CD17210DD2002A550A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8FCD90CE17210DD2002A550A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8FCD90D117210DD2002A550A /* StudentServiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StudentServiceTests-Info.plist"; sourceTree = "<group>"; };
+		8FCD90D317210DD2002A550A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8FCD90D517210DD2002A550A /* StudentServiceTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentServiceTests.h; sourceTree = "<group>"; };
+		8FCD90D617210DD2002A550A /* StudentServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentServiceTests.m; sourceTree = "<group>"; };
+		8FCD90D817210DD2002A550A /* StudentServiceTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StudentServiceTests-Prefix.pch"; sourceTree = "<group>"; };
+		8FCD90E117210DF0002A550A /* ScheduleServiceTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScheduleServiceTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FCD90E617210DF0002A550A /* ScheduleServiceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScheduleServiceTests-Info.plist"; sourceTree = "<group>"; };
+		8FCD90E817210DF0002A550A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8FCD90EA17210DF0002A550A /* ScheduleServiceTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceTests.h; sourceTree = "<group>"; };
+		8FCD90EB17210DF0002A550A /* ScheduleServiceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceTests.m; sourceTree = "<group>"; };
+		8FCD90ED17210DF0002A550A /* ScheduleServiceTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScheduleServiceTests-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +86,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8FCD90C217210DD2002A550A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCD90C817210DD2002A550A /* SenTestingKit.framework in Frameworks */,
+				8FCD90CA17210DD2002A550A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FCD90DD17210DF0002A550A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCD90E217210DF0002A550A /* SenTestingKit.framework in Frameworks */,
+				8FCD90E317210DF0002A550A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -52,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				8F09F55D1712C0B300903557 /* scheduleApp */,
+				8FCD90CF17210DD2002A550A /* StudentServiceTests */,
+				8FCD90E417210DF0002A550A /* ScheduleServiceTests */,
 				8F09F55A1712C0B300903557 /* Frameworks */,
 				8F09F5591712C0B300903557 /* Products */,
 			);
@@ -61,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				8F09F5581712C0B300903557 /* scheduleApp */,
+				8FCD90C617210DD2002A550A /* StudentServiceTests.octest */,
+				8FCD90E117210DF0002A550A /* ScheduleServiceTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				8F09F55B1712C0B300903557 /* Foundation.framework */,
+				8FCD90C717210DD2002A550A /* SenTestingKit.framework */,
+				8FCD90C917210DD2002A550A /* Cocoa.framework */,
+				8FCD90CB17210DD2002A550A /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -79,6 +145,14 @@
 				8F09F55E1712C0B300903557 /* main.m */,
 				8F09F5691712C0DC00903557 /* Student.h */,
 				8F09F56A1712C0DC00903557 /* Student.m */,
+				8F09F56C1712CA8600903557 /* StudentService.h */,
+				8F09F56D1712CA8600903557 /* StudentService.m */,
+				8F09F56F1712CAA600903557 /* Schedule.h */,
+				8F09F5701712CAA600903557 /* Schedule.m */,
+				8F8EA720171EF301007826AB /* ScheduleService.h */,
+				8F8EA721171EF301007826AB /* ScheduleService.m */,
+				8F09F5721712CB0F00903557 /* Admin.h */,
+				8F09F5731712CB0F00903557 /* Admin.m */,
 				8F09F5601712C0B300903557 /* Supporting Files */,
 			);
 			path = scheduleApp;
@@ -89,6 +163,56 @@
 			children = (
 				8F09F5621712C0B300903557 /* scheduleApp.1 */,
 				8F09F5611712C0B300903557 /* scheduleApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8FCD90CB17210DD2002A550A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8FCD90CC17210DD2002A550A /* AppKit.framework */,
+				8FCD90CD17210DD2002A550A /* CoreData.framework */,
+				8FCD90CE17210DD2002A550A /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		8FCD90CF17210DD2002A550A /* StudentServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				8FCD90D517210DD2002A550A /* StudentServiceTests.h */,
+				8FCD90D617210DD2002A550A /* StudentServiceTests.m */,
+				8FCD90D017210DD2002A550A /* Supporting Files */,
+			);
+			path = StudentServiceTests;
+			sourceTree = "<group>";
+		};
+		8FCD90D017210DD2002A550A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FCD90D117210DD2002A550A /* StudentServiceTests-Info.plist */,
+				8FCD90D217210DD2002A550A /* InfoPlist.strings */,
+				8FCD90D817210DD2002A550A /* StudentServiceTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8FCD90E417210DF0002A550A /* ScheduleServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				8FCD90EA17210DF0002A550A /* ScheduleServiceTests.h */,
+				8FCD90EB17210DF0002A550A /* ScheduleServiceTests.m */,
+				8FCD90E517210DF0002A550A /* Supporting Files */,
+			);
+			path = ScheduleServiceTests;
+			sourceTree = "<group>";
+		};
+		8FCD90E517210DF0002A550A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FCD90E617210DF0002A550A /* ScheduleServiceTests-Info.plist */,
+				8FCD90E717210DF0002A550A /* InfoPlist.strings */,
+				8FCD90ED17210DF0002A550A /* ScheduleServiceTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -113,6 +237,42 @@
 			productReference = 8F09F5581712C0B300903557 /* scheduleApp */;
 			productType = "com.apple.product-type.tool";
 		};
+		8FCD90C517210DD2002A550A /* StudentServiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FCD90DB17210DD2002A550A /* Build configuration list for PBXNativeTarget "StudentServiceTests" */;
+			buildPhases = (
+				8FCD90C117210DD2002A550A /* Sources */,
+				8FCD90C217210DD2002A550A /* Frameworks */,
+				8FCD90C317210DD2002A550A /* Resources */,
+				8FCD90C417210DD2002A550A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StudentServiceTests;
+			productName = StudentServiceTests;
+			productReference = 8FCD90C617210DD2002A550A /* StudentServiceTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8FCD90E017210DF0002A550A /* ScheduleServiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FCD90EE17210DF0002A550A /* Build configuration list for PBXNativeTarget "ScheduleServiceTests" */;
+			buildPhases = (
+				8FCD90DC17210DF0002A550A /* Sources */,
+				8FCD90DD17210DF0002A550A /* Frameworks */,
+				8FCD90DE17210DF0002A550A /* Resources */,
+				8FCD90DF17210DF0002A550A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScheduleServiceTests;
+			productName = ScheduleServiceTests;
+			productReference = 8FCD90E117210DF0002A550A /* ScheduleServiceTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -135,9 +295,59 @@
 			projectRoot = "";
 			targets = (
 				8F09F5571712C0B300903557 /* scheduleApp */,
+				8FCD90C517210DD2002A550A /* StudentServiceTests */,
+				8FCD90E017210DF0002A550A /* ScheduleServiceTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8FCD90C317210DD2002A550A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCD90D417210DD2002A550A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FCD90DE17210DF0002A550A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCD90E917210DF0002A550A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8FCD90C417210DD2002A550A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		8FCD90DF17210DF0002A550A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8F09F5541712C0B300903557 /* Sources */ = {
@@ -146,10 +356,53 @@
 			files = (
 				8F09F55F1712C0B300903557 /* main.m in Sources */,
 				8F09F56B1712C0DC00903557 /* Student.m in Sources */,
+				8F09F56E1712CA8600903557 /* StudentService.m in Sources */,
+				8F09F5711712CAA600903557 /* Schedule.m in Sources */,
+				8F09F5741712CB0F00903557 /* Admin.m in Sources */,
+				8F8EA722171EF301007826AB /* ScheduleService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FCD90C117210DD2002A550A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCD90D717210DD2002A550A /* StudentServiceTests.m in Sources */,
+				8FCD90F117210F1B002A550A /* StudentService.m in Sources */,
+				8FCD90F317210F1E002A550A /* ScheduleService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FCD90DC17210DF0002A550A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCD90EC17210DF0002A550A /* ScheduleServiceTests.m in Sources */,
+				8FCD90F217210F1C002A550A /* StudentService.m in Sources */,
+				8FCD90F417210F1F002A550A /* ScheduleService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8FCD90D217210DD2002A550A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FCD90D317210DD2002A550A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8FCD90E717210DF0002A550A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FCD90E817210DF0002A550A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8F09F5641712C0B300903557 /* Debug */ = {
@@ -229,6 +482,58 @@
 			};
 			name = Release;
 		};
+		8FCD90D917210DD2002A550A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StudentServiceTests/StudentServiceTests-Prefix.pch";
+				INFOPLIST_FILE = "StudentServiceTests/StudentServiceTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		8FCD90DA17210DD2002A550A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StudentServiceTests/StudentServiceTests-Prefix.pch";
+				INFOPLIST_FILE = "StudentServiceTests/StudentServiceTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		8FCD90EF17210DF0002A550A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScheduleServiceTests/ScheduleServiceTests-Prefix.pch";
+				INFOPLIST_FILE = "ScheduleServiceTests/ScheduleServiceTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		8FCD90F017210DF0002A550A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScheduleServiceTests/ScheduleServiceTests-Prefix.pch";
+				INFOPLIST_FILE = "ScheduleServiceTests/ScheduleServiceTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -246,6 +551,23 @@
 			buildConfigurations = (
 				8F09F5671712C0B300903557 /* Debug */,
 				8F09F5681712C0B300903557 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FCD90DB17210DD2002A550A /* Build configuration list for PBXNativeTarget "StudentServiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FCD90D917210DD2002A550A /* Debug */,
+				8FCD90DA17210DD2002A550A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8FCD90EE17210DF0002A550A /* Build configuration list for PBXNativeTarget "ScheduleServiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FCD90EF17210DF0002A550A /* Debug */,
+				8FCD90F017210DF0002A550A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

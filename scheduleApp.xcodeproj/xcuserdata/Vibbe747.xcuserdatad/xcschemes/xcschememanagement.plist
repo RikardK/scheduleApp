@@ -4,6 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ScheduleServiceTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>StudentServiceTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>scheduleApp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +27,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>8F09F5571712C0B300903557</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8FCD90C517210DD2002A550A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8FCD90E017210DF0002A550A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

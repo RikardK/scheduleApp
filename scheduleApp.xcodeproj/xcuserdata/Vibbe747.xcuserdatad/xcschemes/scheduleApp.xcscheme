@@ -20,6 +20,20 @@
                ReferencedContainer = "container:scheduleApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8FCD90E017210DF0002A550A"
+               BuildableName = "ScheduleServiceTests.octest"
+               BlueprintName = "ScheduleServiceTests"
+               ReferencedContainer = "container:scheduleApp.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,6 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8FCD90E017210DF0002A550A"
+               BuildableName = "ScheduleServiceTests.octest"
+               BlueprintName = "ScheduleServiceTests"
+               ReferencedContainer = "container:scheduleApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8FCD90C517210DD2002A550A"
+               BuildableName = "StudentServiceTests.octest"
+               BlueprintName = "StudentServiceTests"
+               ReferencedContainer = "container:scheduleApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

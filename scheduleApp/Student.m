@@ -20,12 +20,21 @@
     self = [super init];
 
     if (self) {
-        self.firstName = firstName;
-        self.lastName = lastName;
+        NSString *stringValidation = @"[a-z]*";
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES[C] %@", stringValidation];
+        
+        if ([predicate evaluateWithObject:firstName] && [predicate evaluateWithObject:lastName]) {
+            self.firstName = firstName;
+            self.lastName = lastName;
+        } else {
+            [NSException raise:@"Invalid format, may only contain letters a through z" format:@"First name: %@ or Last name: %@", firstName, lastName];
+        }
+        
         self.age = age;
         self.email = email;
         self.address = address;
         self.type = @"Student";
+        self.courses = @[@"App development", @"C programming"];
     }
     return self;
 }
