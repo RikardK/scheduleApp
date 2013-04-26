@@ -17,8 +17,8 @@ int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-//        StudentService *studentService = [[StudentService alloc] init];
-//        ScheduleService *scheduleService = [[ScheduleService alloc] init];
+        StudentService *studentService = [[StudentService alloc] init];
+        //ScheduleService *scheduleService = [[ScheduleService alloc] init];
        
         Admin *admin = [[Admin alloc]
                         initWithFirstName:@"Admin"
@@ -42,22 +42,30 @@ int main(int argc, const char * argv[])
         Schedule *schedule = [[Schedule alloc] init];
         NSLog(@"%@", schedule);
         
-        Schedule *schedule2 = [[Schedule alloc]
-                               initWithRoom:142
-                               teacher:@"Anders Carlsson"
-                               course:@"App developement"
-                               whatToRead:@"Chapter 12, 13, 15"
-                               message:@"IMPORTANT! Read chapter 15 twice and complete the challenge"];
+        Schedule *schedule2 = [[Schedule alloc] initWithRoom:142 teacher:@"Anders Carlsson" course:@"App development" time:@"2013-04-24 09:15:00 +0000" whatToRead:@"Chapter 12 and 13 (Objective-C)" message:@"Important, read chapter 12 twice."];
         NSLog(@"%@", schedule2);
         
-        ScheduleService *scheduleService = [[ScheduleService alloc] init];
-        [scheduleService updateSchedule:@"1e70dfed5e6d93ad4fb1e84602004459?rev=1-b5ca1b9511925e723d281d7287f58450" withValue:@"test" forKey:@"Message"];
         
-
-//        [studentService addStudent:student2];
-//        [scheduleService addNewSchedule:schedule2];
+        // ----------Testing----------
         
+        // adding student
+        [studentService addStudent:student2 onCompletion:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            NSMutableDictionary *studentData = [[NSMutableDictionary alloc] init];
+            studentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            NSString *studentId = [studentData objectForKey:@"id"];
+            
+            // getting student
+            [studentService getStudentWithId:studentId onCompletion:^(NSURLResponse *response, NSData *data, NSError *error) {
+                NSMutableDictionary *studentData2 = [[NSMutableDictionary alloc] init];
+                studentData2 = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                NSLog(@"%@", [studentData2 objectForKey:@"Courses"]);
+            }];
+            
+        }];
     }
+    
     [[NSRunLoop currentRunLoop] run];
     return 0;
 }
