@@ -13,10 +13,10 @@
 @property (nonatomic) NSUInteger room;
 @property (nonatomic, copy) NSString *teacher;
 @property (nonatomic, copy) NSString *course;
+@property (nonatomic, copy) NSString *time;
 @property (nonatomic, copy) NSString *whatToRead;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) NSString *type;
 
--(id)initWithRoom:(NSUInteger) room teacher:(NSString *)teacher course:(NSString *)course whatToRead:(NSString *)whatToRead message:(NSString *)message;
-
+-(id)initWithRoom:(NSUInteger) room teacher:(NSString *)teacher course:(NSString *)course time:(NSString *)time whatToRead:(NSString *)whatToRead message:(NSString *)message;
 @end
