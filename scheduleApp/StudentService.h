@@ -11,10 +11,12 @@
 
 @class Schedule;
 
+typedef void(^OnCompletion)(NSURLResponse *response, NSData *data, NSError *error);
+
 @interface StudentService : NSObject
 
--(NSDictionary *)addStudent:(Student *)student;
--(NSDictionary *)getStudentWithId:(NSString *)studentId;
+-(NSDictionary *)addStudent:(Student *)student onCompletion:(OnCompletion)callback;
+-(NSDictionary *)getStudentWithId:(NSString *)studentId onCompletion:(OnCompletion)callback;
 -(Schedule *)dailyScheduleFor:(Student *)studentId;
 -(Schedule *)weeklyScheduleFor:(Student *)studentId;
 -(NSString *)whatToReadTodayFor:(Student *)studentId;

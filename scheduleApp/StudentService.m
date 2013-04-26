@@ -13,11 +13,11 @@ NSString * const db = @"http://vibbe747.iriscouch.com/test/";
 @implementation StudentService
 {
     NSDictionary *studentData;
-    
     NSData *testdata;
+    NSDate *today;
 }
 
--(NSDictionary *)addStudent:(Student *)student
+-(NSDictionary *)addStudent:(Student *)student onCompletion:(OnCompletion)callback
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     NSError *error;
@@ -58,14 +58,12 @@ NSString * const db = @"http://vibbe747.iriscouch.com/test/";
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
     [request setHTTPBody:data];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-    {
-        NSLog(@"%@", [NSJSONSerialization JSONObjectWithData:data options:0 error:&error]);
-    }];
-    return nil;
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:callback];
+    
+    return nil; //return id, rev.
 }
 
--(NSDictionary *)getStudentWithId:(NSString *)studentId
+-(NSDictionary *)getStudentWithId:(NSString *)studentId onCompletion:(OnCompletion)callback
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
@@ -75,17 +73,16 @@ NSString * const db = @"http://vibbe747.iriscouch.com/test/";
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-    {
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    }];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:callback];
     
-    return nil;
+    return nil; //return id, rev. or return bool.
 }
 
 -(Schedule *)dailyScheduleFor:(Student *)studentId
 {
-    return nil;
+    today = [NSDate date];
+    NSLog(@"%@", today);
+    return nil; //return the schedule for today.
 }
 
 -(Schedule *)weeklyScheduleFor:(Student *)studentId
@@ -95,12 +92,14 @@ NSString * const db = @"http://vibbe747.iriscouch.com/test/";
 
 -(NSString *)whatToReadTodayFor:(Student *)studentId
 {
-    return @"What to read";
+    today = [NSDate date];
+    NSLog(@"%@", today);
+    return @"What to read"; //return what to read for today.
 }
 
 -(NSString *)whatToReadThisWeekFor:(Student *)studentId
 {
-    return @"What to read";
+    return @"What to read"; //return what to read for the week.
 }
 
 -(BOOL)sendMessage:(NSString *)message toStudentWithId:(NSString *)student
