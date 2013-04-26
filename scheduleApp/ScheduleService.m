@@ -12,16 +12,22 @@
 {
     NSDictionary *scheduleData;
     NSOperationQueue *queue;
+    
+    NSMutableDictionary *schedules;
 }
 
 -(void)addNewSchedule:(Schedule *)schedule
 {
+//    schedules = [[NSMutableDictionary alloc] init];
+//    [schedules setObject:schedule forKey:schedule.course];
+    
     NSError *error;
     queue = [[NSOperationQueue alloc] init];
     scheduleData = [[NSDictionary alloc] initWithObjectsAndKeys:
                     [NSString stringWithFormat:@"%lu", schedule.room], @"Room",
                     schedule.teacher, @"Teacher",
                     schedule.course, @"Course",
+                    schedule.time, @"Time",
                     schedule.whatToRead, @"What to read",
                     schedule.message, @"Message",
                     schedule.type, @"Type",
@@ -39,6 +45,8 @@
     }];
 }
 
+
+// Need to replace what u send in and not remove everything else.
 -(void)updateSchedule:(NSString *)course withValue:(NSString *)value forKey:(NSString *)key
 {
     queue = [[NSOperationQueue alloc] init];
