@@ -11,9 +11,12 @@
 
 @class Schedule;
 
+typedef void(^OnCompletion)(NSURLResponse *response, NSData *data, NSError *error);
+
 @interface ScheduleService : NSObject
 
--(void)addNewSchedule:(Schedule *)schedule;
--(void)updateSchedule:(NSString *)course withValue:(NSString *)value forKey:(NSString *)key;
+-(void)getScheduleWithId:(NSString *)scheduleId onCompletion:(OnCompletion)callback;
+-(void)addNewSchedule:(Schedule *)schedule onCompletion:(OnCompletion)callback;
+-(void)updateScheduleWithId:(NSString *)scheduleId andRev:(NSString *)scheduleRev withValue:(NSString *)value forKey:(NSString *)key onCompletion:(OnCompletion)callback;
 
 @end
