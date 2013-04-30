@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Schedule.h"
 
-typedef void(^OnCompletion)(NSURLResponse *response, NSData *data, NSError *error);
+
 
 @interface AdminService : NSObject
 
--(void)getScheduleWithId:(NSString *)scheduleId onCompletion:(OnCompletion)callback;
 -(void)addNewSchedule:(Schedule *)schedule onCompletion:(OnCompletion)callback;
 -(void)updateScheduleWithId:(NSString *)scheduleId andRev:(NSString *)scheduleRev withValue:(NSString *)value forKey:(NSString *)key onCompletion:(OnCompletion)callback;
+-(BOOL)sendMessage:(NSString *)message toStudentWithId:(NSString *)studentId onCompletion:(OnCompletion)callback;
+-(BOOL)sendMessageToAllStudents:(NSString *)message onCompletion:(OnCompletion)callback;
 
 @end
