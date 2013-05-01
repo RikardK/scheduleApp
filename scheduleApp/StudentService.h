@@ -11,21 +11,13 @@
 
 @class Schedule;
 
-typedef void(^OnCompletion)(NSURLResponse *response, NSData *data, NSError *error);
-
 @interface StudentService : NSObject
 
--(NSDictionary *)addStudent:(Student *)student onCompletion:(OnCompletion)callback;
+-(BOOL)addStudent:(Student *)student onCompletion:(OnCompletion)callback;
 -(NSDictionary *)getStudentWithId:(NSString *)studentId onCompletion:(OnCompletion)callback;
--(Schedule *)dailyScheduleFor:(Student *)studentId;
--(Schedule *)weeklyScheduleFor:(Student *)studentId;
--(NSString *)whatToReadTodayFor:(Student *)studentId;
--(NSString *)whatToReadThisWeekFor:(Student *)studentId;
-
-
-// Services only and admin can use.
-
--(BOOL)sendMessageToAllStudents:(NSString *)message;
--(BOOL)sendMessageToStudentWithId:(NSString *)student;
+-(Schedule *)dailyScheduleFor:(NSString *)studentId documentId:(NSString *)documentId onCompletion:(OnCompletion)callback;
+-(Schedule *)weeklyScheduleFor:(NSString *)studentId onCompletion:(OnCompletion)callback;
+-(NSString *)whatToReadTodayFor:(NSString *)studentId onCompletion:(OnCompletion)callback;
+-(NSString *)whatToReadThisWeekFor:(NSString *)studentId onCompletion:(OnCompletion)callback;
 
 @end
