@@ -4,4 +4,6 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
+    #import "Constants.h"
+    typedef void(^OnCompletion)(NSURLResponse *response, NSData *data, NSError *error);
 #endif
