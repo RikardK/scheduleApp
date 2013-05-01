@@ -8,18 +8,15 @@
 
 #import "StudentService.h"
 
-NSString * const db = @"http://vibbe747.iriscouch.com/test/";
-
 @implementation StudentService
 {
+    NSOperationQueue *queue;
     NSDictionary *studentData;
-    NSData *testdata;
-    NSDate *today;
 }
 
--(NSDictionary *)addStudent:(Student *)student onCompletion:(OnCompletion)callback
+-(BOOL)addStudent:(Student *)student onCompletion:(OnCompletion)callback
 {
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    queue = [[NSOperationQueue alloc] init];
     NSError *error;
     
     
@@ -51,7 +48,7 @@ NSString * const db = @"http://vibbe747.iriscouch.com/test/";
 
     NSData *data = [NSJSONSerialization dataWithJSONObject:studentData options:0 error:&error];
     
-    NSURL *url = [NSURL URLWithString:db];
+    NSURL *url = [NSURL URLWithString:dataBaseURL];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     
     [request setHTTPMethod:@"POST"];
@@ -60,14 +57,14 @@ NSString * const db = @"http://vibbe747.iriscouch.com/test/";
     
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:callback];
     
-    return nil; //return id, rev.
+    return true;
 }
 
 -(NSDictionary *)getStudentWithId:(NSString *)studentId onCompletion:(OnCompletion)callback
 {
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    queue = [[NSOperationQueue alloc] init];
     
-    NSURL *url = [NSURL URLWithString: [db stringByAppendingString:studentId]];
+    NSURL *url = [NSURL URLWithString: [dataBaseURL stringByAppendingString:studentId]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod:@"GET"];
@@ -78,41 +75,71 @@ NSString * const db = @"http://vibbe747.iriscouch.com/test/";
     return nil; //return id, rev. or return bool.
 }
 
--(Schedule *)dailyScheduleFor:(Student *)studentId
+
+
+-(Schedule *)dailyScheduleFor:(NSString *)studentId documentId:(NSString *)documentId onCompletion:(OnCompletion)callback
 {
-    today = [NSDate date];
-    NSLog(@"%@", today);
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    NSDate *now = [[NSDate alloc] init];
+    NSString *dateString = [format stringFromDate:now];
+    
+    queue = [[NSOperationQueue alloc] init];
+    NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:studentId]];
+    NSMutableURLRequest *getStudentRequest = [[NSMutableURLRequest alloc] initWithURL:getStudentUrl];
+    [getStudentRequest setHTTPMethod:@"GET"];
+    [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+ 
+    [NSURLConnection sendAsynchronousRequest:getStudentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        studentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSString *coursesString = [studentData objectForKey:@"Courses"];
+        NSArray *courses = [coursesString componentsSeparatedByString:@", "];
+        
+        
+        for (int i = 0; i < [courses count]; i++) {
+    
+            NSURL *getDocumentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:documentId]];
+            NSMutableURLRequest *getDocumentRequest = [[NSMutableURLRequest alloc] initWithURL:getDocumentUrl];
+            [getDocumentRequest setHTTPMethod:@"GET"];
+            [getDocumentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+            
+            [NSURLConnection sendAsynchronousRequest:getDocumentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                NSDictionary *documentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                if ([dateString isEqualToString:[documentData objectForKey:@"Date"]]) {
+                    if ([[courses objectAtIndex:i] isEqualToString:[documentData objectForKey:@"Course"]]) {
+                        // Hämta det schema som matchar 
+                        [NSURLConnection sendAsynchronousRequest:getDocumentRequest queue:queue completionHandler:callback];
+                    }
+                }
+            }];
+        }
+    }];
+
+    
+    
+    
+    
+    
     return nil; //return the schedule for today.
 }
 
--(Schedule *)weeklyScheduleFor:(Student *)studentId
+-(Schedule *)weeklyScheduleFor:(NSString *)studentId onCompletion:(OnCompletion)callback
 {
+    
+    // Hämta studenten och vilka sug ut vilka kurser den läser. leta igenom alla type schedule dokument och jämför kursnamn och datum. skicka nya requests med en dag senare. och gör detta sju gånger.
     return nil;
 }
 
--(NSString *)whatToReadTodayFor:(Student *)studentId
+-(NSString *)whatToReadTodayFor:(NSString *)studentId onCompletion:(OnCompletion)callback
 {
-    today = [NSDate date];
-    NSLog(@"%@", today);
+    
+    // Hämta dagens schema för alla kurser som studenten läser och logga i callback what to read.
     return @"What to read"; //return what to read for today.
 }
 
--(NSString *)whatToReadThisWeekFor:(Student *)studentId
+-(NSString *)whatToReadThisWeekFor:(NSString *)studentId  onCompletion:(OnCompletion)callback
 {
     return @"What to read"; //return what to read for the week.
 }
-
--(BOOL)sendMessage:(NSString *)message toStudentWithId:(NSString *)student
-{
-    // GET a student. Update the message key.
-    return TRUE;
-}
-
--(BOOL)sendMessageToAllStudents:(NSString *)message
-{
-    // Loop through all students and set the message.
-    return TRUE;
-}
-
 
 @end
