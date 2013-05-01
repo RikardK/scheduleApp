@@ -8,6 +8,4 @@
 
 #import "Constants.h"
 
-@implementation Constants
-
-@end
+NSString * const dataBaseURL = @"http://vibbe747.iriscouch.com/test/";
