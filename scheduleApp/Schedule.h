@@ -11,12 +11,13 @@
 @interface Schedule : NSObject
 
 @property (nonatomic) NSUInteger room;
-@property (nonatomic, copy) NSString *teacher;
-@property (nonatomic, copy) NSString *course;
-@property (nonatomic, copy) NSString *time;
-@property (nonatomic, copy) NSString *whatToRead;
-@property (nonatomic, copy) NSString *message;
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic) NSString *teacher;
+@property (nonatomic) NSString *course;
+@property (nonatomic) NSString *date;
+@property (nonatomic) NSString *time;
+@property (nonatomic) NSString *whatToRead;
+@property (nonatomic) NSString *message;
+@property (nonatomic) NSString *type;
 
--(id)initWithRoom:(NSUInteger) room teacher:(NSString *)teacher course:(NSString *)course time:(NSString *)time whatToRead:(NSString *)whatToRead message:(NSString *)message;
+-(id)initWithRoom:(NSUInteger) room teacher:(NSString *)teacher course:(NSString *)course date:(NSString *)date time:(NSString *)time whatToRead:(NSString *)whatToRead message:(NSString *)message;
 @end

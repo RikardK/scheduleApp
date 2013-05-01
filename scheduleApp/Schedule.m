@@ -12,10 +12,10 @@
 
 -(id)init
 {
-    return [self initWithRoom:0 teacher:@"" course:@"" time:@"" whatToRead:@"" message:@""];
+    return [self initWithRoom:0 teacher:@"" course:@"" date:@"" time:@"" whatToRead:@"" message:@""];
 }
 
--(id)initWithRoom:(NSUInteger)room teacher:(NSString *)teacher course:(NSString *)course time:(NSString *)time whatToRead:(NSString *)whatToRead message:(NSString *)message
+-(id)initWithRoom:(NSUInteger)room teacher:(NSString *)teacher course:(NSString *)course date:(NSString *)date time:(NSString *)time whatToRead:(NSString *)whatToRead message:(NSString *)message
 {
     self = [super init];
     
@@ -23,6 +23,7 @@
         self.room = room;
         self.teacher = teacher;
         self.course = course;
+        self.date = date;
         self.time = time;
         self.whatToRead = whatToRead;
         self.message = message;
@@ -34,7 +35,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"\n\nRoom: %lu\nTeacher: %@\nCourse: %@\nTime: %@\nWhat to read: %@\nMessage: %@", self.room, self.teacher, self.course, self.time, self.whatToRead, self.message];
+    return [NSString stringWithFormat:@"\n\nRoom: %lu\nTeacher: %@\nCourse: %@\nDate: %@\nTime: %@\nWhat to read: %@\nMessage: %@", self.room, self.teacher, self.course, self.date, self.time, self.whatToRead, self.message];
 }
 
 @end
