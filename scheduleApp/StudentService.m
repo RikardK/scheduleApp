@@ -107,34 +107,61 @@
                 NSDictionary *documentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                 if ([dateString isEqualToString:[documentData objectForKey:@"Date"]]) {
                     if ([[courses objectAtIndex:i] isEqualToString:[documentData objectForKey:@"Course"]]) {
-                        // Hämta det schema som matchar 
-                        [NSURLConnection sendAsynchronousRequest:getDocumentRequest queue:queue completionHandler:callback];
+                        callback(response, data, nil);
                     }
                 }
             }];
         }
     }];
-
-    
-    
-    
-    
-    
     return nil; //return the schedule for today.
 }
 
 -(Schedule *)weeklyScheduleFor:(NSString *)studentId onCompletion:(OnCompletion)callback
 {
     
-    // Hämta studenten och vilka sug ut vilka kurser den läser. leta igenom alla type schedule dokument och jämför kursnamn och datum. skicka nya requests med en dag senare. och gör detta sju gånger.
     return nil;
 }
 
--(NSString *)whatToReadTodayFor:(NSString *)studentId onCompletion:(OnCompletion)callback
+-(NSString *)whatToReadTodayFor:(NSString *)studentId documentId:(NSString *)documentId onCompletion:(OnCompletion)callback
 {
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    NSDate *now = [[NSDate alloc] init];
+    NSString *dateString = [format stringFromDate:now];
     
-    // Hämta dagens schema för alla kurser som studenten läser och logga i callback what to read.
-    return @"What to read"; //return what to read for today.
+    queue = [[NSOperationQueue alloc] init];
+    NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:studentId]];
+    NSMutableURLRequest *getStudentRequest = [[NSMutableURLRequest alloc] initWithURL:getStudentUrl];
+    [getStudentRequest setHTTPMethod:@"GET"];
+    [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    
+    [NSURLConnection sendAsynchronousRequest:getStudentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        studentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSString *coursesString = [studentData objectForKey:@"Courses"];
+        NSArray *courses = [coursesString componentsSeparatedByString:@", "];
+        
+        
+        for (int i = 0; i < [courses count]; i++) {
+            
+            NSURL *getDocumentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:documentId]];
+            NSMutableURLRequest *getDocumentRequest = [[NSMutableURLRequest alloc] initWithURL:getDocumentUrl];
+            [getDocumentRequest setHTTPMethod:@"GET"];
+            [getDocumentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+            
+            [NSURLConnection sendAsynchronousRequest:getDocumentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                NSDictionary *documentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                if ([dateString isEqualToString:[documentData objectForKey:@"Date"]]) {
+                    if ([[courses objectAtIndex:i] isEqualToString:[documentData objectForKey:@"Course"]]) {
+                        NSString *whatToRead = [documentData objectForKey:@"What to read"];
+                        NSDictionary *test = [[NSDictionary alloc] initWithObjectsAndKeys:whatToRead, @"What to read", nil];
+                        NSData *data2 = [NSJSONSerialization dataWithJSONObject:test options:0 error:&error];
+                        callback(response, data2, nil);
+                    }
+                }
+            }];
+        }
+    }];
+    return nil;
 }
 
 -(NSString *)whatToReadThisWeekFor:(NSString *)studentId  onCompletion:(OnCompletion)callback
