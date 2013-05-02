@@ -17,7 +17,7 @@
 -(NSDictionary *)getStudentWithId:(NSString *)studentId onCompletion:(OnCompletion)callback;
 -(Schedule *)dailyScheduleFor:(NSString *)studentId documentId:(NSString *)documentId onCompletion:(OnCompletion)callback;
 -(Schedule *)weeklyScheduleFor:(NSString *)studentId onCompletion:(OnCompletion)callback;
--(NSString *)whatToReadTodayFor:(NSString *)studentId onCompletion:(OnCompletion)callback;
+-(NSString *)whatToReadTodayFor:(NSString *)studentId documentId:(NSString *)documentId onCompletion:(OnCompletion)callback;
 -(NSString *)whatToReadThisWeekFor:(NSString *)studentId onCompletion:(OnCompletion)callback;
 
 @end
