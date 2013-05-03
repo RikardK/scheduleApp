@@ -7,7 +7,6 @@
 //
 
 #import "StudentServiceTest.h"
-#import "StudentService.h"
 
 @implementation StudentServiceTest
 {
@@ -31,7 +30,9 @@
     __block NSData *test;
     NSError *error;
     
-    [studentService getStudentWithId:@"5a9f9d6549a7b72e441b42bc82010c14"
+    
+    // get a real id from the the iriscouch db.
+    [studentService getStudentWithId:@"db7f4199c24a785e3912354e6500f73b"
                         onCompletion:^(NSURLResponse *response, NSData *data, NSError *error) {
                             test = [[NSData alloc] initWithData:data];
                             _isDone = YES;
