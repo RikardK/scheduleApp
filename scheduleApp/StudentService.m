@@ -8,6 +8,8 @@
 
 #import "StudentService.h"
 
+NSString * const dataBaseURL = @"http://vibbe747.iriscouch.com/test/";
+
 @implementation StudentService
 {
     NSOperationQueue *queue;

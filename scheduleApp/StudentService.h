@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Student.h"
 
+typedef void(^OnCompletion)(NSURLResponse *response, NSData *data, NSError *error);
+
+
 @class Schedule;
 
 @interface StudentService : NSObject

@@ -8,13 +8,15 @@
 
 #import "AdminService.h"
 
+NSString * const dataBaseURL1 = @"http://vibbe747.iriscouch.com/test/";
+
 @implementation AdminService
 {
     NSMutableDictionary *scheduleData;
     NSOperationQueue *queue;
 }
 
--(void)addNewSchedule:(Schedule *)schedule onCompletion:(OnCompletion)callback
+-(void)addNewSchedule:(Schedule *)schedule onCompletion:(OnCompletion1)callback
 {
     NSError *error;
     queue = [[NSOperationQueue alloc] init];
@@ -30,7 +32,7 @@
                     nil];
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:scheduleData options:0 error:&error];
-    NSURL *url = [NSURL URLWithString:dataBaseURL];
+    NSURL *url = [NSURL URLWithString:dataBaseURL1];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
@@ -39,10 +41,10 @@
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:callback];
 }
 
--(void)updateScheduleWithId:(NSString *)scheduleId andRev:(NSString *)scheduleRev withValue:(NSString *)value forKey:(NSString *)key onCompletion:(OnCompletion)callback
+-(void)updateScheduleWithId:(NSString *)scheduleId andRev:(NSString *)scheduleRev withValue:(NSString *)value forKey:(NSString *)key onCompletion:(OnCompletion1)callback
 {
     queue = [[NSOperationQueue alloc] init];
-    NSURL *getUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:scheduleId]];
+    NSURL *getUrl = [NSURL URLWithString:[dataBaseURL1 stringByAppendingString:scheduleId]];
     NSMutableURLRequest *getRequest = [[NSMutableURLRequest alloc] initWithURL:getUrl];
     [getRequest setHTTPMethod:@"GET"];
     [getRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
@@ -50,7 +52,7 @@
     [NSURLConnection sendAsynchronousRequest:getRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         NSString *courseIdString = [scheduleId stringByAppendingString:@"?rev="];
         NSString *idAndRev = [courseIdString stringByAppendingString:scheduleRev];
-        NSURL *putUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:idAndRev]];
+        NSURL *putUrl = [NSURL URLWithString:[dataBaseURL1 stringByAppendingString:idAndRev]];
         
         NSMutableDictionary *dataToUpdate = [[NSMutableDictionary alloc] init];
         dataToUpdate = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
@@ -66,11 +68,11 @@
     }];
 }
 
--(BOOL)sendMessage:(NSString *)message toStudentWithId:(NSString *)studentId onCompletion:(OnCompletion)callback
+-(BOOL)sendMessage:(NSString *)message toStudentWithId:(NSString *)studentId onCompletion:(OnCompletion1)callback
 {
     // get request med studentId.
     queue = [[NSOperationQueue alloc] init];
-    NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:studentId]];
+    NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL1 stringByAppendingString:studentId]];
     NSMutableURLRequest *getStudentRequest = [[NSMutableURLRequest alloc] initWithURL:getStudentUrl];
     [getStudentRequest setHTTPMethod:@"GET"];
     [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
@@ -85,7 +87,7 @@
         NSString *studentIdString = [studentId stringByAppendingString:@"?rev="];
         NSString *rev = [studentData valueForKey:@"_rev"];
         NSString *idAndRevForStudent = [studentIdString stringByAppendingString:rev];
-        NSURL *putStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:idAndRevForStudent]];
+        NSURL *putStudentUrl = [NSURL URLWithString:[dataBaseURL1 stringByAppendingString:idAndRevForStudent]];
         
         NSMutableURLRequest *putRequest = [[NSMutableURLRequest alloc] initWithURL:putStudentUrl];
         [putRequest setHTTPMethod:@"PUT"];
@@ -96,14 +98,14 @@
     return true;
 }
 
--(BOOL)sendMessage:(NSString *)message toAllStudents:(NSArray *)documentIds onCompletion:(OnCompletion)callback
+-(BOOL)sendMessage:(NSString *)message toAllStudents:(NSArray *)documentIds onCompletion:(OnCompletion1)callback
 {
     for (int i = 0; i < [documentIds count]; i++) {
         
         NSString *documentId = [documentIds objectAtIndex:i];
         
         queue = [[NSOperationQueue alloc] init];
-        NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:documentId]];
+        NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL1 stringByAppendingString:documentId]];
         NSMutableURLRequest *getStudentRequest = [[NSMutableURLRequest alloc] initWithURL:getStudentUrl];
         [getStudentRequest setHTTPMethod:@"GET"];
         [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
@@ -122,7 +124,7 @@
                 NSString *studentIdString = [documentId stringByAppendingString:@"?rev="];
                 NSString *rev = [documentData valueForKey:@"_rev"];
                 NSString *idAndRevForStudent = [studentIdString stringByAppendingString:rev];
-                NSURL *putStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:idAndRevForStudent]];
+                NSURL *putStudentUrl = [NSURL URLWithString:[dataBaseURL1 stringByAppendingString:idAndRevForStudent]];
                 
                 NSMutableURLRequest *putRequest = [[NSMutableURLRequest alloc] initWithURL:putStudentUrl];
                 [putRequest setHTTPMethod:@"PUT"];
