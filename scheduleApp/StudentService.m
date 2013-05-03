@@ -91,13 +91,12 @@
     [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
  
     [NSURLConnection sendAsynchronousRequest:getStudentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        studentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        NSString *coursesString = [studentData objectForKey:@"Courses"];
+        NSDictionary *student = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSString *coursesString = [student objectForKey:@"Courses"];
         NSArray *courses = [coursesString componentsSeparatedByString:@", "];
         
-        
         for (int i = 0; i < [courses count]; i++) {
-    
+            
             NSURL *getDocumentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:documentId]];
             NSMutableURLRequest *getDocumentRequest = [[NSMutableURLRequest alloc] initWithURL:getDocumentUrl];
             [getDocumentRequest setHTTPMethod:@"GET"];
@@ -113,14 +112,163 @@
             }];
         }
     }];
-    return nil; //return the schedule for today.
+    return nil;
 }
 
--(Schedule *)weeklyScheduleFor:(NSString *)studentId onCompletion:(OnCompletion)callback
+
+
+
+
+
+
+
+
+
+-(Schedule *)weeklyScheduleFor:(NSString *)studentId documentIds:(NSArray *)documentIds onCompletion:(OnCompletion)callback
 {
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    NSDate *today = [[NSDate alloc] init];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *weekdayComponents = [gregorian components:NSWeekdayCalendarUnit fromDate:today];
+    NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
+    [componentsToSubtract setDay:0 - ([weekdayComponents weekday]-2)];
+    NSDate *beginningOfWeek = [gregorian dateByAddingComponents:componentsToSubtract toDate:today options:0];
+    __block NSString *dateString = [format stringFromDate:beginningOfWeek];
+    
+    __block NSMutableArray *arrayWithSchedulesForTheWeek = [[NSMutableArray alloc] init];
+    __block NSArray *eventIds = [[NSArray alloc] initWithArray:documentIds];
+    
+    // Hämtar student
+    queue = [[NSOperationQueue alloc] init];
+    NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:studentId]];
+    NSMutableURLRequest *getStudentRequest = [[NSMutableURLRequest alloc] initWithURL:getStudentUrl];
+    [getStudentRequest setHTTPMethod:@"GET"];
+    [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    
+    [NSURLConnection sendAsynchronousRequest:getStudentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSDictionary *student = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        // Hämta kurser för student och lägger in i en array
+        NSString *coursesString = [student objectForKey:@"Courses"];
+        NSArray *courses = [coursesString componentsSeparatedByString:@", "];
+
+        for (int k = 0; k < [eventIds count]; k++) {
+            
+            NSURL *getDocumentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:[eventIds objectAtIndex:k]]];
+            NSMutableURLRequest *getDocumentRequest = [[NSMutableURLRequest alloc] initWithURL:getDocumentUrl];
+            [getDocumentRequest setHTTPMethod:@"GET"];
+            [getDocumentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+            
+            for (int j = 0; j < 5; j++) { // dag
+                
+                for (int i = 0; i < [courses count]; i++) {  // kurser
+                    
+                    // Hämtar dokumentet
+                    [NSURLConnection sendAsynchronousRequest:getDocumentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                        NSDictionary *scheduleData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                        
+                        NSDate *nextDay = [NSDate dateWithTimeInterval:(j*86400) sinceDate:beginningOfWeek];
+                        dateString = [format stringFromDate:nextDay];
+                        
+                        if ([[courses objectAtIndex:i] isEqualToString:[scheduleData objectForKey:@"Course"]]) {
+                            if ([dateString isEqualToString:[scheduleData objectForKey:@"Date"]]) {
+                                
+                                [arrayWithSchedulesForTheWeek addObject:scheduleData];
+                            }
+                        } else if (k == ([eventIds count] - 1) && i == ([courses count] - 1) && j == 4) {
+                            NSData *schedulesForTheWeekData = [NSJSONSerialization dataWithJSONObject:arrayWithSchedulesForTheWeek options:0 error:&error];
+                            callback(response, schedulesForTheWeekData, nil);
+                        }
+                    }];
+                }
+            }
+        }
+        
+    }];
     
     return nil;
 }
+
+
+-(NSString *)whatToReadThisWeekFor:(NSString *)studentId documentIds:(NSArray *)documentIds onCompletion:(OnCompletion)callback{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    NSDate *today = [[NSDate alloc] init];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *weekdayComponents = [gregorian components:NSWeekdayCalendarUnit fromDate:today];
+    NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
+    [componentsToSubtract setDay:0 - ([weekdayComponents weekday]-2)];
+    NSDate *beginningOfWeek = [gregorian dateByAddingComponents:componentsToSubtract toDate:today options:0];
+    __block NSString *dateString = [format stringFromDate:beginningOfWeek];
+    
+    __block NSMutableArray *whatToReadArray = [[NSMutableArray alloc] init];
+    __block NSArray *eventIds = [[NSArray alloc] initWithArray:documentIds];
+    
+    queue = [[NSOperationQueue alloc] init];
+    NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:studentId]];
+    NSMutableURLRequest *getStudentRequest = [[NSMutableURLRequest alloc] initWithURL:getStudentUrl];
+    [getStudentRequest setHTTPMethod:@"GET"];
+    [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+    
+    [NSURLConnection sendAsynchronousRequest:getStudentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSDictionary *student = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSString *coursesString = [student objectForKey:@"Courses"];
+        __block NSArray *courses = [coursesString componentsSeparatedByString:@", "];
+        
+        for (int k=0; k<[eventIds count]; k++) {
+            for (int j = 0; j < 5; j++) {
+                
+                for (int i = 0; i < [courses count]; i++) {
+                    
+                    NSURL *getDocumentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:[eventIds objectAtIndex:k]]];
+                    NSMutableURLRequest *getDocumentRequest = [[NSMutableURLRequest alloc] initWithURL:getDocumentUrl];
+                    [getDocumentRequest setHTTPMethod:@"GET"];
+                    [getDocumentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+                    
+                    [NSURLConnection sendAsynchronousRequest:getDocumentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                        NSDictionary *documentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                        
+                        
+                        NSDate *nextDay = [NSDate dateWithTimeInterval:(j*86400) sinceDate:beginningOfWeek];
+                        dateString = [format stringFromDate:nextDay];
+                        
+                        
+                        if ([dateString isEqualToString:[documentData objectForKey:@"Date"]]) {
+                            if ([[courses objectAtIndex:i] isEqualToString:[documentData objectForKey:@"Course"]]) {
+                                NSString *whatToRead = [documentData objectForKey:@"What to read"];
+                                [whatToReadArray addObject:whatToRead];
+                                
+                            }
+                        } else if (k == ([eventIds count] - 1) && i == ([courses count] - 1) && j == 4) {
+                            NSData *whatToReadData = [NSJSONSerialization dataWithJSONObject:whatToReadArray options:0 error:&error];
+                            callback(response, whatToReadData, nil);
+                        }
+                        
+                        
+                    }];
+                }
+            }
+        }
+    }];
+    return nil;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -(NSString *)whatToReadTodayFor:(NSString *)studentId documentId:(NSString *)documentId onCompletion:(OnCompletion)callback
 {
@@ -136,8 +284,8 @@
     [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
     
     [NSURLConnection sendAsynchronousRequest:getStudentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        studentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        NSString *coursesString = [studentData objectForKey:@"Courses"];
+        NSDictionary *student = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSString *coursesString = [student objectForKey:@"Courses"];
         NSArray *courses = [coursesString componentsSeparatedByString:@", "];
         
         
@@ -164,9 +312,16 @@
     return nil;
 }
 
--(NSString *)whatToReadThisWeekFor:(NSString *)studentId  onCompletion:(OnCompletion)callback
-{
-    return @"What to read"; //return what to read for the week.
-}
+
+
+
+
+
+
+
+
+
+
+
 
 @end
