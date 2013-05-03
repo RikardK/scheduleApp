@@ -22,6 +22,7 @@
                     [NSString stringWithFormat:@"%lu", schedule.room], @"Room",
                     schedule.teacher, @"Teacher",
                     schedule.course, @"Course",
+                    schedule.date, @"Date",
                     schedule.time, @"Time",
                     schedule.whatToRead, @"What to read",
                     schedule.message, @"Message",
@@ -92,15 +93,46 @@
         [putRequest setHTTPBody:updatedMessageData];
         [NSURLConnection sendAsynchronousRequest:putRequest queue:queue completionHandler:callback];
     }];
-    
-    
-    
     return true;
 }
 
--(BOOL)sendMessageToAllStudents:(NSString *)message onCompletion:(OnCompletion)callback
+-(BOOL)sendMessage:(NSString *)message toAllStudents:(NSArray *)documentIds onCompletion:(OnCompletion)callback
 {
-    // Loop through all students and set the message.
+    for (int i = 0; i < [documentIds count]; i++) {
+        
+        NSString *documentId = [documentIds objectAtIndex:i];
+        
+        queue = [[NSOperationQueue alloc] init];
+        NSURL *getStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:documentId]];
+        NSMutableURLRequest *getStudentRequest = [[NSMutableURLRequest alloc] initWithURL:getStudentUrl];
+        [getStudentRequest setHTTPMethod:@"GET"];
+        [getStudentRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+        
+        // on completion så skickar jag en put request med uppdaterad message key.
+        [NSURLConnection sendAsynchronousRequest:getStudentRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+            
+            NSMutableDictionary *documentData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            
+            if ([[documentData valueForKey:@"Type"] isEqualToString:@"Student"]) {
+            
+                [documentData setValue:message forKey:@"Message"];
+                NSData *updatedMessageData = [NSJSONSerialization dataWithJSONObject:documentData options:0 error:&error];
+                
+                // put url
+                NSString *studentIdString = [documentId stringByAppendingString:@"?rev="];
+                NSString *rev = [documentData valueForKey:@"_rev"];
+                NSString *idAndRevForStudent = [studentIdString stringByAppendingString:rev];
+                NSURL *putStudentUrl = [NSURL URLWithString:[dataBaseURL stringByAppendingString:idAndRevForStudent]];
+                
+                NSMutableURLRequest *putRequest = [[NSMutableURLRequest alloc] initWithURL:putStudentUrl];
+                [putRequest setHTTPMethod:@"PUT"];
+                [putRequest setValue:@"application/json" forHTTPHeaderField:@"Content-type"];
+                [putRequest setHTTPBody:updatedMessageData];
+                [NSURLConnection sendAsynchronousRequest:putRequest queue:queue completionHandler:callback];
+            }
+        }];
+    }
+    
     return TRUE;
 }
 

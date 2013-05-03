@@ -16,6 +16,6 @@
 -(void)addNewSchedule:(Schedule *)schedule onCompletion:(OnCompletion)callback;
 -(void)updateScheduleWithId:(NSString *)scheduleId andRev:(NSString *)scheduleRev withValue:(NSString *)value forKey:(NSString *)key onCompletion:(OnCompletion)callback;
 -(BOOL)sendMessage:(NSString *)message toStudentWithId:(NSString *)studentId onCompletion:(OnCompletion)callback;
--(BOOL)sendMessageToAllStudents:(NSString *)message onCompletion:(OnCompletion)callback;
+-(BOOL)sendMessage:(NSString *)message toAllStudents:(NSArray *)documentIds onCompletion:(OnCompletion)callback;
 
 @end
