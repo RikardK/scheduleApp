@@ -12,10 +12,10 @@
 
 -(id)init
 {
-    return [self initWithFirstName:@"" lastName:@"" age:0 email:@"" address:@""];
+    return [self initWithFirstName:@"" lastName:@"" age:0 courses:@"" email:@"" address:@""];
 }
 
--(id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName age:(NSUInteger)age email:(NSString *)email address:(NSString *)address
+-(id)initWithFirstName:(NSString *)firstName lastName:(NSString *)lastName age:(NSUInteger)age courses:(NSString *)courses email:(NSString *)email address:(NSString *)address
 {
     self = [super init];
 
@@ -63,7 +63,9 @@
         }
         
         self.type = @"Student";
-        self.courses = @[@"App development", @"C programming"];
+        
+        
+        self.courses = [courses componentsSeparatedByString:@", "];
     }
     return self;
 }
